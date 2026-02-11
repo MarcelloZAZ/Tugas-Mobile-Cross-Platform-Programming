@@ -1,98 +1,105 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { HelloWave } from '@/components/hello-wave';
-import ParallaxScrollView from '@/components/parallax-scroll-view';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
-
-export default function HomeScreen() {
+export default function App() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
+    // Menggunakan ScrollView agar bisa digulir ke bawah jika konten banyak [cite: 211]
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
+        
+     
+        <Text style={styles.title}>Daftar Teman & Profil</Text>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+        <View style={styles.card}>
+          
+          <Image source={require('../../assets/images/react-logo.png')} style={styles.profileImage} />
+          <Text style={styles.name}>Marcello Zefanya A. Z.</Text>
+          <Text style={styles.nim}>00000089382 </Text>
+          <Text style={styles.bio}>Mahasiswa Informatika UMN</Text>
+        </View>
+
+        <View style={styles.card}>
+          <Image source={require('../../assets/images/icon.png')} style={styles.profileImage} />
+          <Text style={styles.name}>Reynard Geovani Gozali</Text>
+          <Text style={styles.nim}>00000123456</Text>
+          <Text style={styles.bio}>Mahasiswa Informatika UMN</Text>
+        </View>
+
+
+        <View style={styles.card}>
+          <Image source={require('../../assets/images/icon.png')} style={styles.profileImage} />
+          <Text style={styles.name}>Jermy pohar</Text>
+          <Text style={styles.nim}>00000987654</Text>
+          <Text style={styles.bio}>Mahasiswa Informatika UMN</Text>
+        </View>
+
+
+        <View style={styles.card}>
+          <Image source={require('../../assets/images/icon.png')} style={styles.profileImage} />
+          <Text style={styles.name}>Nadya wulandari</Text>
+          <Text style={styles.nim}>0000088996</Text>
+          <Text style={styles.bio}>Mahasiswa Informatika UMN</Text>
+        </View>
+
+      </View>
+      <StatusBar style="auto" />
+    </ScrollView>
   );
 }
 
+
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  scrollContainer: {
+    paddingVertical: 50,
+    backgroundColor: '#f0f0f0', 
     alignItems: 'center',
-    gap: 8,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+    color: '#333',
   },
+  card: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 15, 
+    marginBottom: 20, 
+    alignItems: 'center', 
+    width: 300,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  profileImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50, 
+    marginBottom: 10,
+  },
+  name: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#000',
+  },
+  nim: {
+    fontSize: 14,
+    color: '#555',
+    marginTop: 4,
+  },
+  bio: {
+    fontSize: 12,
+    color: '#888',
+    marginTop: 2,
+  }
 });
